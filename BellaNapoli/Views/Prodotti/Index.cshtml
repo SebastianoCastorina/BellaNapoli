@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BellaNapoli.Models.Prodotti>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@if (User.IsInRole("admin"))
+{
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p> }
+
+else {
+    
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeProdotto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CostoProdotto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ingredienti)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Foto)
+            
+        </th>
+
+    </tr>
+  
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeProdotto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostoProdotto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ingredienti)
+        </td>
+        <td>
+            <img class="w-25" src="~/Content/assets/img/@item.Foto" />
+
+        </td>
+        @if (User.IsInRole("admin"))
+        {
+            <td>
+                @Html.ActionLink("Modifica ", "Edit", new { id = item.IdProdotti }) |
+                @Html.ActionLink("Dettagli", "Details", new { id = item.IdProdotti }) |
+                @Html.ActionLink("Elimina ", "Delete", new { id = item.IdProdotti })
+            </td>
+        }
+        else { }
+        </tr>
+}
+
+</table>

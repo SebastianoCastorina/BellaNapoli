@@ -1,0 +1,54 @@
+﻿@model IEnumerable<BellaNapoli.Models.Clienti>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+@if (User.IsInRole("admin"))
+{
+
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cognome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Indirizzo)
+            </td>
+            <td>
+                @Html.ActionLink("Modifica", "Edit", new { id = item.IdClienti }) |
+                @Html.ActionLink("Dettagli", "Details", new { id = item.IdClienti }) |
+                @Html.ActionLink("Elimina", "Delete", new { id = item.IdClienti })
+            </td>
+        </tr>
+      
+    }} 
+else { 
+    <p>
+        @Html.ActionLink("Registrati", "Create")
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cognome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Indirizzo)
+            </th>
+            <th></th>
+        </tr>
+
+
+    </table>
+}

@@ -1,0 +1,45 @@
+﻿@model BellaNapoli.Models.Prodotti
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Prodotti</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeProdotto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeProdotto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CostoProdotto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostoProdotto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ingredienti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ingredienti)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Foto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdProdotti }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

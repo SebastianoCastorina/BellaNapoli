@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/Site.css")
+
+</head>
+<body >
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm" style="background-color: #3d1001; color: white; font-weight: bold; width: 100%;">
+                <img src="~/Content/assets/img/Logo.Jpg" alt="Logo" width="150" height="75">
+                @Html.ActionLink("Pizzeria Bella Napoli", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1 text-white fw-bold">
+                        @if (User.IsInRole("admin"))
+                        {
+
+
+                            <li>@Html.ActionLink("Prodotti", "Index", "Prodotti", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Gestisci Clienti", "Index", "Clienti", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Lista Ordini", "Index", "Ordini", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Dettaglio dell'ordine", "Index", "DettagliOrdini", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+
+                        }
+                        else if (User.IsInRole("user"))
+                        {
+                            <li>@Html.ActionLink("Menù", "Index", "Prodotti", new { area = "" }, new { @class = "nav-link" })</li>
+
+                            <li>@Html.ActionLink("Ordine", "Index", "Ordini", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Dettaglio dell'ordine", "Index", "DettagliOrdini", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Carrello", "Index", "Carrello", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+
+
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Menù", "Index", "Prodotti", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Ordine", "Index", "Ordini", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Dettaglio dell'ordine", "Index", "DettagliOrdini", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Registrati", "Register", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Accedi", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        </div>
+        
+        <div class="container body-content ">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
+                <ul>
+                    <li> @Html.ActionLink("Area Riservata", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+ 
+</body>
+</html>
